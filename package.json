@@ -1,0 +1,26 @@
+{
+  "name": "generate-histogram",
+  "version": "1.0.0",
+  "description": "Pass in a json file with histogram data and this will generate an ascii-histogram",
+  "main": "GenerateHistogram.js",
+  "scripts": {
+    "start": "node GenerateHistogram.js",
+    "starts": "sh ./scripts/start.sh",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "nigelsdtech/node-generate-histogram"
+  },
+  "keywords": [
+    "histogram",
+    "ascii"
+  ],
+  "author": "Nigel Stephen D'Souza",
+  "license": "MIT",
+  "dependencies": {
+    "ascii-histogram": "~1.2.1",
+    "csvtojson": "~1.0.2",
+    "csv-reader": "~1.0.1"
+  }
+}
