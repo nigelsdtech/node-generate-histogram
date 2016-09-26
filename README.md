@@ -21,6 +21,7 @@ There are two functions,
 * Calculate lag (time difference) between two time columns and show a chart of that lag
 
 You need to set the following environment variables:
+
 **DATA_FILE** - Path to the csv file containing the data
 **CHART_TYPE** - Either "simple" for a basic histogram or "lag" for a lag chart.
 
