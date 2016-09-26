@@ -23,7 +23,7 @@ var
  */
 function generateSimpleHistogram(params) {
 
-  var histJson = [];
+  var histData = {};
 
   var inputStream = fs.createReadStream(params.file, {encoding: 'utf8'});
 
@@ -34,13 +34,13 @@ function generateSimpleHistogram(params) {
       trim: true
     }))
     .on('data', function (row) {
-        histJson[row[0]] = row[1]
+        histData[row[0]] = row[1]
     })
     .on('error', function (error) {
       throw e
     })
     .on('end', function (data) {
-      console.log(histogram(histJson));
+      console.log(histogram(histData));
     });
 
 }
@@ -48,7 +48,7 @@ function generateSimpleHistogram(params) {
 /**
  * Generates a chart showing time difference between two time columns
  *
- * E.g. you have a csv file with thisdata:
+ * E.g. you have a csv file with this data:
  *
  * 2016-01-01 00:00:00,2016-01-01 00:00:59
  * 2016-01-01 10:01:00,2016-01-01 10:04:00
@@ -64,31 +64,50 @@ function generateSimpleHistogram(params) {
  * @param {object} params - params to be passed in to the function
  * @param {string} params.file - path to the file containing the data
  */
-function generateLagChart() {
+function generateLagChart(params) {
 
-  readJSON('data/lag.json', function (err, jdata) {
- 
-    if (err) throw err
+  var histData = {};
 
-    var histData = {}
+  var inputStream = fs.createReadStream(params.file, {encoding: 'utf8'});
 
-    // Calculate lag for each element in the array
-    jdata.forEach( function (el, idx) {
+  inputStream
+    .pipe(csvReader({
+      trim: true
+    }))
+    .on('data', function (row) {
 
-      var p = new Date('2016-01-01 '+el.processedAt)
-      var t = new Date('2016-01-01 '+el.triggeredAt)
+      var start = row[0]
+      var end   = row[1]
 
-      var lag = (p.getTime() - t.getTime())/1000;
+      var s = new Date(start)
+      var e = new Date(end)
 
-      histData[el.processedAt] = lag
+      var lag = (e.getTime() - s.getTime())/1000;
+
+      histData[start] = lag
+
     })
+    .on('error', function (error) {
+      throw e
+    })
+    .on('end', function (data) {
+      console.log(histogram(histData));
+    });
 
-    console.log(histogram(histData));
-    
-  })
-
- 
 }
 
 
-generateSimpleHistogram({file: process.env.DATA_FILE} )
+// Get the data file
+var file = process.env.DATA_FILE;
+
+
+// Get the type of chart you want to display
+switch (process.env.CHART_TYPE) {
+  case 'simple':
+  default :
+    generateSimpleHistogram({file: file});
+    break;
+  case 'lag':
+    generateLagChart({file: file});
+    break;
+}
