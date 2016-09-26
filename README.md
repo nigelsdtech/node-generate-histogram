@@ -20,9 +20,11 @@ There are two functions,
 * Generate a basic histogram
 * Calculate lag (time difference) between two time columns and show a chart of that lag
 
+
 You need to set the following environment variables:
 
 **DATA_FILE** - Path to the csv file containing the data
+
 **CHART_TYPE** - Either "simple" for a basic histogram or "lag" for a lag chart.
 
 ```sh
@@ -31,6 +33,8 @@ $ export CHART_TYPE="simple"
 $ npm start
 
 ```
+
+
 
 
 ### Generating a simple chart
@@ -53,6 +57,7 @@ $ export DATA_FILE='basicSample.csv'; export CHART_TYPE='simple'; npm start
   oranges | ############################################################ | 24
      figs | ##########                                                   | 4
 ```
+
 
 
 ### Generating a lag chart
@@ -84,6 +89,8 @@ $ export DATA_FILE='lagSample.csv'; export CHART_TYPE='lag'; npm start
   2016-01-01 17:57:26 | #####################################################        | 14
 
 ```
+
+
 
 
 ### Examples
