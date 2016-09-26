@@ -1,11 +1,11 @@
 # node-generate-histogram
 Pass in a csvfile with histogram data and this will generate an ascii-histogram 
 
-### Version
+## Version
 1.0.0
 
 
-### Installation
+## Installation
 
 This isn't available on npm yet, so you'll just have to use github
 
@@ -14,20 +14,80 @@ $ npm install "nigelsdtech/node-generate-histogram"
 ```
 
 
-### Usage
+## Usage
 
-Currently there is only one function - generating a basic histogram. You can call this function using the following:
+There are two functions,
+* Generate a basic histogram
+* Calculate lag (time difference) between two time columns and show a chart of that lag
+
+You need to set the following environment variables:
+**DATA_FILE** - Path to the csv file containing the data
+**CHART_TYPE** - Either "simple" for a basic histogram or "lag" for a lag chart.
 
 ```sh
 $ export DATA_FILE="PATH_TO_YOUR_FILE"
+$ export CHART_TYPE="simple"
 $ npm start
+
+```
+
+
+### Generating a simple chart
+
+Create a csv file with two columns; the variable and the frequency.
+
+```
+bananas,6
+apples,1
+oranges,24
+figs,4
+```
+
+Then run as follows:
+```sh
+$ export DATA_FILE='basicSample.csv'; export CHART_TYPE='simple'; npm start
+
+  bananas | ###############                                              | 6
+   apples | ###                                                          | 1
+  oranges | ############################################################ | 24
+     figs | ##########                                                   | 4
+```
+
+
+### Generating a lag chart
+
+Create a csv file with two columns; the start time and end time (it needs to be in YYYY-mm-dd HH:MM:SS format):
+
+```
+2016-01-01 17:57:20,2016-01-01 17:57:32
+2016-01-01 17:57:21,2016-01-01 17:57:32
+2016-01-01 17:57:21,2016-01-01 17:57:37
+2016-01-01 17:57:22,2016-01-01 17:57:37
+2016-01-01 17:57:23,2016-01-01 17:57:37
+2016-01-01 17:57:24,2016-01-01 17:57:37
+2016-01-01 17:57:25,2016-01-01 17:57:37
+2016-01-01 17:57:26,2016-01-01 17:57:37
+2016-01-01 17:57:26,2016-01-01 17:57:40
+```
+
+Then run as follows:
+```sh
+$ export DATA_FILE='lagSample.csv'; export CHART_TYPE='lag'; npm start
+
+  2016-01-01 17:57:20 | #############################################                | 12
+  2016-01-01 17:57:21 | ############################################################ | 16
+  2016-01-01 17:57:22 | ########################################################     | 15
+  2016-01-01 17:57:23 | #####################################################        | 14
+  2016-01-01 17:57:24 | #################################################            | 13
+  2016-01-01 17:57:25 | #############################################                | 12
+  2016-01-01 17:57:26 | #####################################################        | 14
 
 ```
 
 
 ### Examples
 
-See examples/basicHistogram.sh to get started. You can run it with the following.
+See examples/basicHistogram.sh and examples/lagHistogram.sh to get started. You can run it with the following.
 
 ```sh
 user@machine:~/useful/node-generate-histogram (master u=)$ cd examples/
@@ -124,5 +184,4 @@ user@machine:~/useful/node-generate-histogram/examples (master u=)$ sh basicHist
   17:01:57 | #############################################                | 629
 
 user@machine:~/useful/node-generate-histogram/examples (master u=)$
-
 ```
