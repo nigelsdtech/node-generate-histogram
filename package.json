@@ -1,11 +1,10 @@
 {
   "name": "generate-histogram",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Pass in a json file with histogram data and this will generate an ascii-histogram",
   "main": "GenerateHistogram.js",
   "scripts": {
     "start": "node GenerateHistogram.js",
-    "starts": "sh ./scripts/start.sh",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

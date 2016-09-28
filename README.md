@@ -1,5 +1,5 @@
 # node-generate-histogram
-Pass in a csvfile with histogram data and this will generate an ascii-histogram 
+Pass in a csv file with histogram data and this will generate an ascii-histogram
 
 ## Version
 1.0.0
@@ -99,7 +99,7 @@ See examples/basicHistogram.sh and examples/lagHistogram.sh to get started. You 
 
 ```sh
 user@machine:~/useful/node-generate-histogram (master u=)$ cd examples/
-user@machine:~/useful/node-generate-histogram/examples (master u=)$ sh basicHistogram.sh 
+user@machine:~/useful/node-generate-histogram/examples (master u=)$ sh basicHistogram.sh
   17:00:00 | ###                                                          | 15
   17:00:01 | #                                                            | 5
   17:00:02 | #################                                            | 83
