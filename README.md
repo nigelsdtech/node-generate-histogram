@@ -2,7 +2,7 @@
 Pass in a csv file with histogram data and this will generate an ascii-histogram
 
 ## Version
-1.0.0
+1.0.1
 
 
 ## Installation
