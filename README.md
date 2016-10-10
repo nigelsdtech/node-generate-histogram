@@ -7,10 +7,8 @@ Pass in a csv file with histogram data and this will generate an ascii-histogram
 
 ## Installation
 
-This isn't available on npm yet, so you'll just have to use github
-
 ```sh
-$ npm install "nigelsdtech/node-generate-histogram"
+$ npm install generate-histogram
 ```
 
 
