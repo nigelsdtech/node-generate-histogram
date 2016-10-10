@@ -1,6 +1,6 @@
 {
   "name": "generate-histogram",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Pass in a json file with histogram data and this will generate an ascii-histogram",
   "main": "GenerateHistogram.js",
   "scripts": {
@@ -13,13 +13,13 @@
   },
   "keywords": [
     "histogram",
-    "ascii"
+    "ascii",
+    "generate-histogram"
   ],
   "author": "Nigel Stephen D'Souza",
   "license": "MIT",
   "dependencies": {
     "ascii-histogram": "~1.2.1",
-    "csvtojson": "~1.0.2",
     "csv-reader": "~1.0.1"
   }
 }
